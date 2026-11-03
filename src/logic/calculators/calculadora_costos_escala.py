@@ -147,10 +147,9 @@ class CalculadoraCostosEscala(CalculadoraBase):
             else:
                 s3_final = s3_base + self.GAP_AVANCE_ETIQUETAS
             
-            # Validación final
-            if s3_final > self.ANCHO_MAXIMO:
-                raise ValueError(f"El avance total ({s3_final:.2f} mm) excede el máximo permitido ({self.ANCHO_MAXIMO} mm)")
-            
+            # No se valida contra ANCHO_MAXIMO: el avance va en la dirección de la bobina y
+            # lo limita la unidad de montaje (128/140/168 dientes), no el ancho de la máquina.
+
             print(f"\n=== CÁLCULO DE S3 ===")
             print(f"Avance base: {s3_base:.2f} mm")
             print(f"Gap de avance: {self.GAP_AVANCE_MANGA if es_manga else self.GAP_AVANCE_ETIQUETAS} mm")
